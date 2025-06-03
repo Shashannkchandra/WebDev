@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+
+/*
+   ✅outermost wra Use perspective on the pper to define 3D depth.
+   ✅ Use transform-style: preserve-3d on the intermediate container to make sure the child layers retain their individual translateZ depths.
+ 
+
+   ✅ perspective
+   Defines how far the viewer is from the screen — like depth in 3D.
+   It creates a sense of 3D space for child elements that are transformed.
+   Must be applied on the parent of the element that is being transformed in 3D.
+   Applied on: the ancestor (e.g., #wrapper)
+   Effect is visible on: its transformed children
+
+   ✅ transform-style: preserve-3d
+   Tells the browser to keep 3D depth intact for child elements.
+   If you don’t set this, the children collapse into a 2D plane (default is flat).
+   Applied on: the container that holds transformed children (e.g., .container)
+
+*/
+
+#wrapper{
+    height: 100vh; /* vh-> viewport height*/
+    overflow-x: hidden; /*Prevent horizontal scroll*/
+    overflow-y: auto; /* Allow vertical scroll */
+    perspective: 10px; /* Perspective for 3D effect */;
+}
+
+.container{
+    position: relative;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 100%; /* 100% of the wrapper height(.i.e parent height)*/
+    transform-style: preserve-3d; /* Enable 3D transformations */
+    z-index: -1; /*Put this .container behind all other elements that have a z-index ≥ 0 (or no z-index at all) */
+}
+
+.background{
+    transform: translateZ(-40px) scale(5); /*SARA RAAZ YHI CHUPA HAI,, TRANSLATEZ AND SCALE KARNE ME */
+}
+
+.foreground{
+    transform: translateZ(-20px) scale(3); /*SARA RAAZ YHI CHUPA HAI,, TRANSLATEZ AND SCALE KARNE ME */
+}
+
+
+.background, .foreground{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -2; /* Put these elements behind the container*/
+    object-fit: cover; /* “Resize the image to completely cover the container without stretching it.
+                       Crop the parts that overflow, but maintain the original aspect ratio.”*/
+                     /* we are using object-fit: cover to ensure that the images fill the entire container without distortion, cropping any overflow while maintaining
+                      their aspect ratio. height: 100% and width: 100% fills the conatiner but changes the aspect ratio, might crop and distort the image */
+    
+} 
+
+h1{
+    position: absolute;
+    top: 14rem;
+    font-size: 10rem;
+    letter-spacing: 4px;
+    color: white;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+section{
+    background-color: rgb(45, 45, 45);
+    color: white;
+    padding: 5rem 0;
+}
+
+
+.secHeading{
+    font-size: 5rem;
+    padding: 0rem 10rem;
+
+}
+
+.text{
+    font-size: 1.5rem;
+    padding: 0 10rem;
+    margin: 5rem 0;
+}
+
+.bg{
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background-attachment: fixed; /*  NEW THING: Fixes the background image in place */
+    background-position: center; /* NEW THING: Centers the background image */
+    background-size: cover; /* NEW THING: Ensures the background image covers the entire section */
+    
+}
+
+.desc{
+    position: absolute;
+    background-color: white;
+    color: black;
+    padding: 0.5rem 2.5rem;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+
+.bg1{
+    background-image: url(sport-1.jpg);
+}
+
+.bg2{
+    background-image: url(sport-2.jpg);
+}
+
+.bg3{
+    background-image: url(sport-3.jpg);
+}
